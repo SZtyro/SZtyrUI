@@ -3,5 +3,46 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-  }
+    "SZtyrUI": {
+      "projectType": "library",
+      "root": "projects/sztyr-ui",
+      "sourceRoot": "projects/sztyr-ui/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/sztyr-ui/tsconfig.lib.json",
+            "project": "projects/sztyr-ui/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/sztyr-ui/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/sztyr-ui/src/test.ts",
+            "tsConfig": "projects/sztyr-ui/tsconfig.spec.json",
+            "karmaConfig": "projects/sztyr-ui/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/sztyr-ui/tsconfig.lib.json",
+              "projects/sztyr-ui/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "SZtyrUI"
 }
