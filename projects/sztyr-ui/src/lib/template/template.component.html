@@ -1,0 +1,48 @@
+<div class="mat-app-background" style="height: 100vh">
+
+    <span *ngIf="!(screenWidth > 991)" style="height: 36px;">
+        <button mat-button (click)="toggleSideNav()" style="width: auto;">
+            <span class="material-icons">menu</span>
+        </button>
+    </span>
+
+    <mat-sidenav-container [style]="screenWidth > 991 ? 'height: 100%;' : 'height: calc(100% - 36px);' ">
+
+        <mat-sidenav #sidenav mode="side" [opened]="screenWidth > 991"
+            style="background-color: var(--mainColor)" (mouseenter)="sideNavExtend()"
+            (mouseleave)="sideNavExtend()">
+            <sztyrui-menu [@openClose]="isExtension ? 'open' : 'closed'"></sztyrui-menu>
+        </mat-sidenav>
+
+        <mat-sidenav-content style="display: flex;">
+
+
+            <div style="width: 100%;">
+
+                <router-outlet *ngIf="!isLoading"></router-outlet>
+
+                <div *ngIf="isLoading" style="height: 100%; vertical-align: middle; display: flex;">
+
+                    <mat-progress-spinner style="margin: auto;" mode="indeterminate" color="primary">
+                    </mat-progress-spinner>
+
+                </div>
+
+
+
+            </div>
+
+        </mat-sidenav-content>
+
+
+    </mat-sidenav-container>
+
+    <div class="container-fluid toast-wrapper">
+        <div [class]="'col-12 col-md-7 col-lg-5 col-xl-2 toast-base mat-elevation-z6 ' + toast.type"
+            *ngFor="let toast of userInterface.toasts" @fadeIn>
+            <div [innerHTML]="toast.message | translate:toast.params" style="width: inherit;">
+            </div>
+        </div>
+    </div>
+
+</div>

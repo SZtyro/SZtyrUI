@@ -1,4 +1,4 @@
-import { FunctionBase } from './../ts/functionBase';
+import { MenuItem } from './../ts/MenuItem';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -8,12 +8,21 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-
+  /**Offset from left edge of the child menu */
   @Input()
-  sideNavExtension: boolean = false;
+  offset: number = 15;
 
+  /**Direction of extension */
   @Input()
-  menuItems: FunctionBase[];
+  direction: 'up' | 'down' = 'down';
+
+  /**Is menu extended */
+  @Input()
+  isExtension: boolean = false;
+
+  /**Menu items */
+  @Input()
+  menuItems: MenuItem[];
 
   constructor() { }
 

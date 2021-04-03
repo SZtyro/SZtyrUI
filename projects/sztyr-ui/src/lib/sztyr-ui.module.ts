@@ -1,3 +1,4 @@
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MenuItemComponent } from './menu-item/menu-item.component';
 import { NgModule } from '@angular/core';
 import { MenuComponent } from './menu/menu.component';
@@ -5,22 +6,27 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-
+import { TemplateComponent } from './template/template.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
     MenuComponent,
-    MenuItemComponent
+    MenuItemComponent,
+    TemplateComponent
   ],
   imports: [
     CommonModule,
     TranslateModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    MatSidenavModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     MenuComponent,
-    MenuItemComponent
+    MenuItemComponent,
+    TemplateComponent
   ]
 })
 export class SZtyrUIModule { }

@@ -1,16 +1,15 @@
-import { FunctionBase } from './../ts/functionBase';
+import { MenuItem } from '../ts/MenuItem';
 
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { Component, Input, OnInit, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { fadeIn } from '../ts/animations';
 
 @Component({
-  selector: 'app-menu-item',
+  selector: 'sztyrui-menu-item',
   templateUrl: './menu-item.component.html',
   styleUrls: ['./menu-item.component.scss'],
   animations: [
     trigger('openClose', [
-      // ...
       state('open', style({
         height: '*',
         overflow: 'hidden',
@@ -32,18 +31,18 @@ import { fadeIn } from '../ts/animations';
   ]
 })
 export class MenuItemComponent implements OnInit {
+  
+  @Input()
+  direction: 'up' | 'down' = 'down';
 
   @Input()
-  direction: 'up' | 'down'
-
-  @Input()
-  menuItems: FunctionBase[];
+  menuItems: MenuItem[];
 
   @Input()
   parent: MenuItemComponent;
 
   @Input()
-  offset: number = 0;
+  offset: number = 15;
 
   @Input()
   isTitleVisible: boolean;
@@ -52,7 +51,7 @@ export class MenuItemComponent implements OnInit {
   opacity: number = 0.0;
 
   @Output()
-  itemClicked = new EventEmitter<FunctionBase>();
+  itemClicked = new EventEmitter<MenuItem>();
 
   isMouseOver: boolean = false;
 
@@ -62,12 +61,12 @@ export class MenuItemComponent implements OnInit {
 
   }
 
-  openList(item: FunctionBase) {
+  openList(item: MenuItem) {
     item.isOpen = true;
     item.isMouseOver = true;
   }
 
-  closeList(item: FunctionBase) {
+  closeList(item: MenuItem) {
 
 
 
@@ -80,14 +79,14 @@ export class MenuItemComponent implements OnInit {
 
   }
 
-  mouseLeave(item: FunctionBase) {
+  mouseLeave(item: MenuItem) {
     this.isMouseOver = false;
     if (!item.childs) {
       item.isOpen = false;
     }
   }
 
-  mouseEnter(item: FunctionBase) {
+  mouseEnter(item: MenuItem) {
     if (this.parent)
       this.getMaster(this.parent).itemClicked.emit(item);
     else
