@@ -7,7 +7,7 @@
       "projectType": "library",
       "root": "projects/sztyr-ui",
       "sourceRoot": "projects/sztyr-ui/src",
-      "prefix": "lib",
+      "prefix": "sztyrui",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
