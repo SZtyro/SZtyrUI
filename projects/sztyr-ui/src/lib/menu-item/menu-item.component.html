@@ -2,9 +2,9 @@
 
   <div *ngIf="direction == 'up'">
     <div [@openClose]="item.isOpen ? 'open' : 'closed'">
-      <app-menu-item [direction]="'up'" [menuItems]="item.childs" [offset]="offset + 10" [isTitleVisible]="true"
+      <sztyrui-menu-item [direction]="'up'" [menuItems]="item.childs" [offset]="offset + 10" [isTitleVisible]="true"
         [opacity]="opacity + 0.09" [parent]="this">
-      </app-menu-item>
+      </sztyrui-menu-item>
     </div>
   </div>
 
@@ -13,19 +13,19 @@
 
       <div class="item-content-wrapper">
         <span style="display: flex;align-items: center;">
-          <span class="material-icons" style="margin-right: 10px;" [innerHTML]="item.icon"></span>
+          <span [class]="iconStyle" style="margin-right: 10px; font-size: 17px;" [innerHTML]="item.icon"></span>
           <span *ngIf="isTitleVisible">
             {{item.name |translate}}
           </span>
         </span>
 
         <span *ngIf="item.childs != null && item.childs.length > 0 && isTitleVisible"
-          style="display: flex;align-items: center;">
-          <span *ngIf="item.isOpen;else less" class="material-icons" style="margin-right: 5px;">
+          style="display: flex;align-items: center;pointer-events: none;">
+          <span *ngIf="item.isOpen;else less" [class]="iconStyle" style="margin-right: 5px;font-size: 17px;">
             expand_more
           </span>
           <ng-template #less>
-            <span class="material-icons" style="margin-right: 5px;">
+            <span [class]="iconStyle" style="margin-right: 5px; font-size: 17px;">
               expand_less
             </span>
           </ng-template>
@@ -37,9 +37,9 @@
 
   <div *ngIf="direction == 'down'">
     <div [@openClose]="item.isOpen ? 'open' : 'closed'">
-      <app-menu-item (itemClicked)="mouseEnter($event)" [direction]="'down'" [menuItems]="item.childs"
+      <sztyrui-menu-item (itemClicked)="mouseEnter($event)" [direction]="'down'" [menuItems]="item.childs"
         [offset]="offset + 10" [isTitleVisible]="true" [opacity]="opacity + 0.09" [parent]="this">
-      </app-menu-item>
+      </sztyrui-menu-item>
     </div>
   </div>
 

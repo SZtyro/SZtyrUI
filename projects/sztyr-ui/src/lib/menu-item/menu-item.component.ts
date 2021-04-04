@@ -1,3 +1,4 @@
+import { IconStyle } from './../ts/iconStyle';
 import { MenuItem } from '../ts/MenuItem';
 
 import { trigger, state, style, transition, animate } from '@angular/animations';
@@ -31,6 +32,9 @@ import { fadeIn } from '../ts/animations';
   ]
 })
 export class MenuItemComponent implements OnInit {
+
+  @Input()
+  iconStyle: IconStyle = IconStyle.MaterialFilled;
   
   @Input()
   direction: 'up' | 'down' = 'down';

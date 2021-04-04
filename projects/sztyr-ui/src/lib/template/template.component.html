@@ -8,10 +8,10 @@
 
     <mat-sidenav-container [style]="screenWidth > 991 ? 'height: 100%;' : 'height: calc(100% - 36px);' ">
 
-        <mat-sidenav #sidenav mode="side" [opened]="screenWidth > 991"
-            style="background-color: var(--mainColor)" (mouseenter)="sideNavExtend()"
-            (mouseleave)="sideNavExtend()">
-            <sztyrui-menu [@openClose]="isExtension ? 'open' : 'closed'"></sztyrui-menu>
+        <mat-sidenav #sidenav mode="side" [opened]="screenWidth > 991" [style.background]="background"
+            (mouseenter)="sideNavExtend()" (mouseleave)="sideNavExtend()"
+            [@openClose]="isExtension ? 'open' : 'closed'">
+            <sztyrui-menu [menuItems]="menuItems" [isExtension]="isExtension" [iconStyle]="iconStyle"></sztyrui-menu>
         </mat-sidenav>
 
         <mat-sidenav-content style="display: flex;">

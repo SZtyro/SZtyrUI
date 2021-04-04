@@ -6,6 +6,8 @@ import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Rout
 import { TranslateService } from '@ngx-translate/core';
 import { HostListener } from '@angular/core';
 import { fadeIn, openClose } from '../ts/animations';
+import { IconStyle } from './../ts/iconStyle';
+
 
 @Component({
   selector: 'sztyr-ui-template',
@@ -19,9 +21,15 @@ import { fadeIn, openClose } from '../ts/animations';
 export class TemplateComponent implements OnInit {
 
   @Input()
+  iconStyle: IconStyle = IconStyle.MaterialFilled;
+
+  @Input()
   menuItems: MenuItem[];
 
-  isExtension = false;
+  @Input()
+  background: String;
+
+  isExtension: boolean = false;
   screenWidth;
   isLoading: boolean = true;
 
@@ -29,13 +37,8 @@ export class TemplateComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private translate: TranslateService,
     public userInterface: InterfaceService
   ) {
-    translate.addLangs(['en', 'pl']);
-    translate.setDefaultLang('pl');
-    translate.use('pl')
-
     this.screenWidth = window.innerWidth;
   }
 
