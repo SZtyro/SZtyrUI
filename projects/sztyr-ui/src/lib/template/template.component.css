@@ -18,6 +18,7 @@ a {
     align-items: flex-end;
     padding-right: 30px;
     padding-left: 30px;
+    pointer-events: none;
   }
   
   .toast-base {
@@ -32,6 +33,8 @@ a {
     color: white;
     word-wrap: break-word;
     padding: 15px;
+    border-radius: 5px;
+    pointer-events: all;
   }
   
   .toast-error {

@@ -40,7 +40,7 @@
     <div class="container-fluid toast-wrapper">
         <div [class]="'col-12 col-md-7 col-lg-5 col-xl-2 toast-base mat-elevation-z6 ' + toast.type"
             *ngFor="let toast of userInterface.toasts" @fadeIn>
-            <div [innerHTML]="toast.message | translate:toast.params" style="width: inherit;">
+            <div [innerHTML]="toast.message | translate:toast.params" style="width: 100%;">
             </div>
         </div>
     </div>
