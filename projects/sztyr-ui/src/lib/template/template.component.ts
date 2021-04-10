@@ -2,7 +2,7 @@ import { InterfaceService } from './../interface.service';
 import { MenuItem } from './../ts/MenuItem';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, Event } from '@angular/router';
+import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, Event, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { HostListener } from '@angular/core';
 import { fadeIn, openClose } from '../ts/animations';
@@ -29,6 +29,9 @@ export class TemplateComponent implements OnInit {
   @Input()
   background: String;
 
+  @Input()
+  ignore: String[];
+
   isExtension: boolean = false;
   screenWidth;
   isLoading: boolean = true;
@@ -37,7 +40,8 @@ export class TemplateComponent implements OnInit {
 
   constructor(
     private router: Router,
-    public userInterface: InterfaceService
+    public userInterface: InterfaceService,
+    private route: ActivatedRoute
   ) {
     this.screenWidth = window.innerWidth;
   }
@@ -78,5 +82,9 @@ export class TemplateComponent implements OnInit {
 
   toggleSideNav() {
     this.sidenav.toggle();
+  }
+
+  isIgnored() {
+    return this.route.routeConfig.path
   }
 }

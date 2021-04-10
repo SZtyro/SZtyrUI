@@ -1,12 +1,13 @@
 <div class="mat-app-background" style="height: 100vh">
 
     <span *ngIf="!(screenWidth > 991)" style="height: 36px;">
-        <button mat-button (click)="toggleSideNav()" style="width: auto;">
+        <button mat-button color="primary" (click)="toggleSideNav()" style="width: auto;">
             <span class="material-icons">menu</span>
         </button>
     </span>
 
-    <mat-sidenav-container [style]="screenWidth > 991 ? 'height: 100%;' : 'height: calc(100% - 36px);' ">
+    <mat-sidenav-container
+        [style]="screenWidth > 991 ? 'height: 100%;' : 'height: calc(100% - 36px);' + ' background-color: transparent;'">
 
         <mat-sidenav #sidenav mode="side" [opened]="screenWidth > 991" [style.background]="background"
             (mouseenter)="sideNavExtend()" (mouseleave)="sideNavExtend()"

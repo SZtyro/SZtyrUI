@@ -9,12 +9,15 @@ import { RouterModule } from '@angular/router';
 import { TemplateComponent } from './template/template.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
+import { TileMenuComponent } from './tile-menu/tile-menu.component';
+import { MatRippleModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
     MenuComponent,
     MenuItemComponent,
-    TemplateComponent
+    TemplateComponent,
+    TileMenuComponent
   ],
   imports: [
     CommonModule,
@@ -23,12 +26,14 @@ import { MatButtonModule } from '@angular/material/button';
     RouterModule,
     MatSidenavModule,
     MatProgressSpinnerModule,
-    MatButtonModule
+    MatButtonModule,
+    MatRippleModule
   ],
   exports: [
     MenuComponent,
     MenuItemComponent,
-    TemplateComponent
+    TemplateComponent,
+    TileMenuComponent
   ]
 })
 export class SZtyrUIModule { }
