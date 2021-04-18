@@ -2,7 +2,7 @@ import { InterfaceService } from './../interface.service';
 import { MenuItem } from './../ts/MenuItem';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, Event, ActivatedRoute } from '@angular/router';
+import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, Event, ActivatedRoute, RoutesRecognized } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { HostListener } from '@angular/core';
 import { fadeIn, openClose } from '../ts/animations';
@@ -30,11 +30,14 @@ export class TemplateComponent implements OnInit {
   background: String;
 
   @Input()
-  ignore: String[];
+  ignored: String[];
 
   isExtension: boolean = false;
   screenWidth;
   isLoading: boolean = true;
+
+
+  isMenuIgnored = false;
 
   @ViewChild('sidenav') sidenav: MatSidenav;
 
@@ -44,6 +47,28 @@ export class TemplateComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.screenWidth = window.innerWidth;
+
+    this.router.events.subscribe((d: Event) => {
+      switch (true) {
+        case d instanceof NavigationEnd:
+          this.isIgnored()
+          break;
+
+        default:
+          break;
+      }
+    })
+  }
+
+  extractPath(root, p) {
+
+    p += '/' + root.value.routeConfig.path
+
+    if (root.children.length > 0)
+      p = this.extractPath(root.children[0], p) 
+    
+
+    return p;
   }
 
   ngOnInit(): void {
@@ -85,6 +110,10 @@ export class TemplateComponent implements OnInit {
   }
 
   isIgnored() {
-    return this.route.routeConfig.path
+    let root = this.route.pathFromRoot[0].snapshot['_routerState']._root.children[0];
+    if (root)
+      this.isMenuIgnored = this.ignored.includes(this.extractPath(root, ""))
+    else
+      this.isMenuIgnored = false;
   }
 }
